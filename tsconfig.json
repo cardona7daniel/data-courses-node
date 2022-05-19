@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "es2017",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "incremental": true,
+    "skipLibCheck": true,
+    "strictNullChecks": false,
+    "noImplicitAny": false,
+    "strictBindCallApply": false,
+    "forceConsistentCasingInFileNames": false,
+    "noFallthroughCasesInSwitch": false,
+    "paths": {
+      "@src/*": ["src/*"],
+      "@config/*": ["src/config/*"],
+      "@test/*": ["test/*"],
+      "@shared/*": ["src/shared/*"],
+      "@guards/*": ["src/shared/guards/*"],
+      "@interfaces/*": ["src/shared/interfaces/*"],
+      "@helpers/*": ["src/helpers/*"],
+      "@entities/*": ["src/shared/entities/*"],
+      "@users/*": ["src/users/*"],
+      "@courses/*": ["src/courses/*"],
+  },
+  }
+}
