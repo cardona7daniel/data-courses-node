@@ -7,10 +7,14 @@ export class Acceptance extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne((type) => User, (user) => user.acceptances) user: User;
+  @ManyToOne((type) => User, (user) => user.acceptances, {
+    onDelete: 'CASCADE',
+  })
+  user: User;
   @ManyToOne(
     (type) => CourseContent,
     (courseContent) => courseContent.acceptances,
+    { onDelete: 'CASCADE' },
   )
   courseContent: CourseContent;
 }

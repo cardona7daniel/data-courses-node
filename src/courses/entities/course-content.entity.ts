@@ -21,8 +21,12 @@ export class CourseContent extends BaseEntity {
   @IsString()
   description: string;
 
-  @OneToMany((type) => Acceptance, (acceptance) => acceptance.courseContent)
+  @OneToMany((type) => Acceptance, (acceptance) => acceptance.courseContent, {
+    onDelete: 'CASCADE',
+  })
   acceptances: Acceptance[];
-  @ManyToOne((type) => Course, (course) => course.coursesByContents)
+  @ManyToOne((type) => Course, (course) => course.coursesByContents, {
+    onDelete: 'CASCADE',
+  })
   course: Course;
 }

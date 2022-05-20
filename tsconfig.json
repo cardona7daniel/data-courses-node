@@ -26,6 +26,7 @@
       "@interfaces/*": ["src/shared/interfaces/*"],
       "@helpers/*": ["src/helpers/*"],
       "@entities/*": ["src/shared/entities/*"],
+      "@email/*": ["src/email/*"],
       "@users/*": ["src/users/*"],
       "@courses/*": ["src/courses/*"],
   },

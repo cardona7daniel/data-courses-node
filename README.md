@@ -74,3 +74,9 @@ Nest is [MIT licensed](LICENSE).
 
 ## External References
 - Config TypeORM - [Medium](https://medium.com/geekculture/typeorm-and-mysql-configuration-for-nestjs-part-2-30a288054330)
+- https://wanago.io/2021/07/12/api-nestjs-confirming-email/
+- https://wanago.io/2020/05/25/api-nestjs-authenticating-users-bcrypt-passport-jwt-cookies/
+- https://wanago.io/2021/11/15/api-nestjs-authorization-roles-claims/
+- https://myaccount.google.com/lesssecureapps and https://accounts.google.com/DisplayUnlockCaptcha
+- https://nodemailer.com/usage/using-gmail/
+

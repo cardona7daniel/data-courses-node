@@ -18,5 +18,6 @@ export class Ranking extends BaseEntity {
   @Max(5)
   score: number;
 
-  @ManyToOne((type) => User, (user) => user.rankings) user: User;
+  @ManyToOne((type) => User, (user) => user.rankings, { onDelete: 'CASCADE' })
+  user: User;
 }

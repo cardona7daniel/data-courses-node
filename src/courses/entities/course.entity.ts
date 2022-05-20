@@ -14,8 +14,12 @@ export class Course {
   @IsString()
   name: string;
 
-  @OneToMany((type) => UserByCourse, (usercourse) => usercourse.course)
+  @OneToMany((type) => UserByCourse, (usercourse) => usercourse.course, {
+    onDelete: 'CASCADE',
+  })
   userByCourses: UserByCourse[];
-  @OneToMany((type) => CourseContent, (coursecontent) => coursecontent.course)
+  @OneToMany((type) => CourseContent, (coursecontent) => coursecontent.course, {
+    onDelete: 'CASCADE',
+  })
   coursesByContents: CourseContent[];
 }

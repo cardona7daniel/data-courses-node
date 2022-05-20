@@ -8,7 +8,12 @@ export class UserByCourse extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne((type) => User, (user) => user.userByCourses) user: User;
-  @ManyToOne((type) => Course, (course) => course.userByCourses)
+  @ManyToOne((type) => User, (user) => user.userByCourses, {
+    onDelete: 'CASCADE',
+  })
+  user: User;
+  @ManyToOne((type) => Course, (course) => course.userByCourses, {
+    onDelete: 'CASCADE',
+  })
   course: Course;
 }

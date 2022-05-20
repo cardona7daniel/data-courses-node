@@ -3,18 +3,17 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-  ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
   BeforeInsert,
 } from 'typeorm';
 import * as bcrypt from 'bcryptjs';
-import { Role } from './role.entity';
 import { Acceptance } from './acceptance.entity';
 import { UserByCourse } from './user-courses.entity';
 import { Ranking } from './ranking.entity';
 import { IsEmail, IsNotEmpty } from 'class-validator';
+import { RoleTypeEnum } from '@src/shared/interfaces/role.enum';
 
 @Entity('users')
 export class User extends BaseEntity {
@@ -28,6 +27,16 @@ export class User extends BaseEntity {
   @Column()
   @IsNotEmpty()
   password: string;
+
+  @Column({ default: false })
+  public isEmailConfirmed: boolean;
+
+  @Column({
+    type: 'enum',
+    enum: RoleTypeEnum,
+    default: RoleTypeEnum.STUDENT,
+  })
+  role: RoleTypeEnum;
 
   @Column()
   @CreateDateColumn()
@@ -46,11 +55,16 @@ export class User extends BaseEntity {
     return bcrypt.compare(password, this.password);
   }
 
-  @ManyToOne((type) => Role, (role) => role.users) role: Role;
-  @OneToMany((type) => Acceptance, (acceptance) => acceptance.user)
+  @OneToMany((type) => Acceptance, (acceptance) => acceptance.user, {
+    onDelete: 'CASCADE',
+  })
   acceptances: Acceptance[];
-  @OneToMany((type) => UserByCourse, (userByCourse) => userByCourse.user)
+  @OneToMany((type) => UserByCourse, (userByCourse) => userByCourse.user, {
+    onDelete: 'CASCADE',
+  })
   userByCourses: UserByCourse[];
-  @OneToMany((type) => Ranking, (ranking) => ranking.user)
+  @OneToMany((type) => Ranking, (ranking) => ranking.user, {
+    onDelete: 'CASCADE',
+  })
   rankings: Ranking[];
 }
