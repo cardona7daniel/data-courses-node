@@ -23,7 +23,8 @@
     "create-migration": "yarn run typeorm migration:create --config src/config/typeorm.config.ts -n",
     "run-migrations": "yarn run typeorm migration:run --config src/config/typeorm.config.ts",
     "revert-migrations": "yarn run typeorm migration:revert --config src/config/typeorm.config.ts",
-    "generate-migrations": "yarn run typeorm migration:generate --config src/config/typeorm.config.ts -n"
+    "generate-migrations": "yarn run typeorm migration:generate --config src/config/typeorm.config.ts -n",
+    "deploy:prod": "git commit -am 'deploy production' && git status && git push heroku master"
   },
   "dependencies": {
     "@nestjs/common": "^8.0.0",

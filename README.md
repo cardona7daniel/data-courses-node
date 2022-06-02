@@ -79,4 +79,5 @@ Nest is [MIT licensed](LICENSE).
 - https://wanago.io/2021/11/15/api-nestjs-authorization-roles-claims/
 - https://myaccount.google.com/lesssecureapps and https://accounts.google.com/DisplayUnlockCaptcha
 - https://nodemailer.com/usage/using-gmail/
+- heroku logs --tail
 
