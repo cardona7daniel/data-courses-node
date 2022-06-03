@@ -12,13 +12,7 @@ import * as bcrypt from 'bcryptjs';
 import { Acceptance } from './acceptance.entity';
 import { UserByCourse } from './user-courses.entity';
 import { Ranking } from './ranking.entity';
-import {
-  IsEmail,
-  IsNotEmpty,
-  IsString,
-  MaxLength,
-  MinLength,
-} from 'class-validator';
+import { IsEmail, IsNotEmpty, IsString, MaxLength } from 'class-validator';
 import { RoleTypeEnum } from '@src/shared/interfaces/role.enum';
 
 @Entity('users')
@@ -27,7 +21,7 @@ export class User extends BaseEntity {
   id: number;
 
   @Column({ length: 100 })
-  @MinLength(1)
+  @IsNotEmpty()
   @MaxLength(100)
   @IsString()
   name: string;

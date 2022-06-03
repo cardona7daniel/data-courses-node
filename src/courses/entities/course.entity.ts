@@ -1,10 +1,16 @@
 import { IsString, MaxLength, MinLength } from 'class-validator';
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  OneToMany,
+  BaseEntity,
+} from 'typeorm';
 import { UserByCourse } from '@src/users/entities/user-courses.entity';
 import { CourseContent } from './course-content.entity';
 
 @Entity('courses')
-export class Course {
+export class Course extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 

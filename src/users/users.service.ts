@@ -1,5 +1,7 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import MySqlErrorCode from '@src/shared/database/mysqlErrorCodes.enum';
+import { RoleTypeEnum } from '@src/shared/interfaces/role.enum';
+import { createQueryBuilder, getRepository } from 'typeorm';
 import { UserDto } from './dto/user.dto';
 import { User } from './entities/user.entity';
 
@@ -59,10 +61,31 @@ export class UsersService {
     );
   }
 
+  async findUsersByRole(role: RoleTypeEnum) {
+    if (!role) {
+      throw new HttpException('Role is empty', HttpStatus.NOT_FOUND);
+    }
+    const user = await User.find({
+      where: {
+        role,
+      },
+    });
+    if (user) {
+      return user;
+    }
+    throw new HttpException(
+      `Users with role ${role} do not exist`,
+      HttpStatus.NOT_FOUND,
+    );
+  }
+
   async findByEmail(email: string) {
+    if (!email) {
+      throw new HttpException('Email is empty', HttpStatus.NOT_FOUND);
+    }
     const user = await User.findOne({
       where: {
-        email: email,
+        email,
       },
     });
     if (user) {
@@ -81,6 +104,28 @@ export class UsersService {
         isEmailConfirmed: true,
       },
     );
+  }
+
+  async getTeachers() {
+    try {
+      const users = await createQueryBuilder()
+        .select('user.id')
+        .addSelect('AVG(r.score)', 'score')
+        .from(User, 'user')
+        .innerJoin('user.rankings', 'r')
+        .where('user.role = :role', { role: RoleTypeEnum.TEACHER })
+        .groupBy('user.email')
+        .getRawMany();
+
+      if (users) {
+        return users;
+      }
+    } catch (error) {
+      throw new HttpException(
+        'Has ocurred an error getting the information',
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
+    }
   }
 
   // async remove(id: string): Promise<void> {

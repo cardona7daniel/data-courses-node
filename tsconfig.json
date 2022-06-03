@@ -29,6 +29,7 @@
       "@email/*": ["src/email/*"],
       "@users/*": ["src/users/*"],
       "@courses/*": ["src/courses/*"],
+      "@common/*": ["src/common/*"],
   },
   }
 }
