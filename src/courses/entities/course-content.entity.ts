@@ -3,9 +3,11 @@ import {
   BaseEntity,
   Column,
   Entity,
+  JoinColumn,
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
+  RelationId,
 } from 'typeorm';
 import { Acceptance } from '@src/users/entities/acceptance.entity';
 import { Course } from './course.entity';
@@ -21,12 +23,17 @@ export class CourseContent extends BaseEntity {
   @IsString()
   description: string;
 
+  @Column()
+  courseId: number;
+
   @OneToMany((type) => Acceptance, (acceptance) => acceptance.courseContent, {
     onDelete: 'CASCADE',
   })
   acceptances: Acceptance[];
+
   @ManyToOne((type) => Course, (course) => course.coursesByContents, {
     onDelete: 'CASCADE',
   })
+  @JoinColumn({ name: 'courseId', referencedColumnName: 'id' })
   course: Course;
 }
