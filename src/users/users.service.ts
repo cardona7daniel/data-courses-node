@@ -109,7 +109,9 @@ export class UsersService {
   async getTeachers() {
     try {
       const users = await createQueryBuilder()
-        .select('user.id')
+        .select('user.id', 'id')
+        .addSelect('user.email', 'email')
+        .addSelect('user.name', 'username')
         .addSelect('AVG(r.score)', 'score')
         .from(User, 'user')
         .innerJoin('user.rankings', 'r')
