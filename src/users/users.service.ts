@@ -114,7 +114,7 @@ export class UsersService {
         .addSelect('user.name', 'username')
         .addSelect('AVG(r.score)', 'score')
         .from(User, 'user')
-        .innerJoin('user.rankings', 'r')
+        .leftJoin('user.rankings', 'r')
         .where('user.role = :role', { role: RoleTypeEnum.TEACHER })
         .groupBy('user.email')
         .getRawMany();
