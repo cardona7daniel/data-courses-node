@@ -27,7 +27,6 @@ export class CoursesService {
           HttpStatus.BAD_REQUEST,
         );
       }
-      console.log(error);
       throw new HttpException(
         'Something went wrong',
         HttpStatus.INTERNAL_SERVER_ERROR,
